@@ -1,6 +1,7 @@
 package acalidonio.pnc_parcial2_00363918.common.mappers;
 
 import acalidonio.pnc_parcial2_00363918.domain.dto.request.CreateProviderRequest;
+import acalidonio.pnc_parcial2_00363918.domain.dto.request.UpdateProviderRequest;
 import acalidonio.pnc_parcial2_00363918.domain.dto.response.ProviderResponse;
 import acalidonio.pnc_parcial2_00363918.domain.entities.MagicProvider;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ public class ProviderMapper {
                 .type(request.getType())
                 .build();
     }
-    public MagicProvider toProviderUpdate(CreateProviderRequest request, UUID id) {
+    public MagicProvider toProviderUpdate(UpdateProviderRequest request, UUID id) {
         return MagicProvider.builder()
                 .id(id)
                 .name(request.getName())

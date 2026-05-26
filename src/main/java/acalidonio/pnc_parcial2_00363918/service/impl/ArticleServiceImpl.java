@@ -4,6 +4,7 @@ import acalidonio.pnc_parcial2_00363918.common.mappers.ArticleMapper;
 import acalidonio.pnc_parcial2_00363918.domain.dto.request.CreateArticleRequest;
 import acalidonio.pnc_parcial2_00363918.domain.dto.request.UpdateArticleRequest;
 import acalidonio.pnc_parcial2_00363918.domain.dto.response.ArticleResponse;
+import acalidonio.pnc_parcial2_00363918.domain.entities.MagicArticle;
 import acalidonio.pnc_parcial2_00363918.exceptions.ResourceNotFoundException;
 import acalidonio.pnc_parcial2_00363918.repository.ArticleRepository;
 import acalidonio.pnc_parcial2_00363918.service.ArticleService;
@@ -29,7 +30,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ArticleResponse createArticle(CreateArticleRequest request) {
-        return null;
+        MagicArticle article = mapper.toArticleCreate(request);
+
+        return mapper.toDto(repository.save(article));
     }
 
     @Override
@@ -39,11 +42,19 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ArticleResponse updateArticle(UUID id, UpdateArticleRequest request) {
-        return null;
+        this.getArticleById(id);
+        return mapper.toDto(repository.save(mapper.toArticleUpdate(request, id)));
     }
 
     @Override
     public ArticleResponse deleteArticle(UUID id) {
-        return null;
+        ArticleResponse article = this.getArticleById(id);
+
+        /*if (provider.getCategory() == Product.Category.INGREDIENT && product.getAvailable()) {
+            throw new ConflictException("Provider cannot be eliminated as it still has available products");
+        }*/
+
+        repository.deleteById(id);
+        return article;
     }
 }

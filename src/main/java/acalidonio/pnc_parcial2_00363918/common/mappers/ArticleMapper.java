@@ -1,6 +1,7 @@
 package acalidonio.pnc_parcial2_00363918.common.mappers;
 
 import acalidonio.pnc_parcial2_00363918.domain.dto.request.CreateArticleRequest;
+import acalidonio.pnc_parcial2_00363918.domain.dto.request.UpdateArticleRequest;
 import acalidonio.pnc_parcial2_00363918.domain.dto.response.ArticleResponse;
 import acalidonio.pnc_parcial2_00363918.domain.entities.MagicArticle;
 
@@ -15,7 +16,7 @@ public class ArticleMapper {
                 .magicProvider(request.getMagicProvider())
                 .build();
     }
-    public MagicArticle toArticleUpdate(CreateArticleRequest request, UUID id) {
+    public MagicArticle toArticleUpdate(UpdateArticleRequest request, UUID id) {
         return MagicArticle.builder()
                 .id(id)
                 .name(request.getName())
