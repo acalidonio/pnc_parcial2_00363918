@@ -5,6 +5,7 @@ import acalidonio.pnc_parcial2_00363918.domain.dto.request.CreateArticleRequest;
 import acalidonio.pnc_parcial2_00363918.domain.dto.request.UpdateArticleRequest;
 import acalidonio.pnc_parcial2_00363918.domain.dto.response.ArticleResponse;
 import acalidonio.pnc_parcial2_00363918.domain.entities.MagicArticle;
+import acalidonio.pnc_parcial2_00363918.exceptions.BusinessLogicException;
 import acalidonio.pnc_parcial2_00363918.exceptions.ResourceNotFoundException;
 import acalidonio.pnc_parcial2_00363918.repository.ArticleRepository;
 import acalidonio.pnc_parcial2_00363918.service.ArticleService;
@@ -30,7 +31,9 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleResponse createArticle(CreateArticleRequest request) {
         MagicArticle article = mapper.toArticleCreate(request);
-
+        if (article.getMagicProvider() == null) {
+            throw new BusinessLogicException("Provider must not be null");
+        }
         return mapper.toDto(repository.save(article));
     }
 
@@ -42,7 +45,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleResponse updateArticle(UUID id, UpdateArticleRequest request) {
         this.getArticleById(id);
-        return mapper.toDto(repository.save(mapper.toArticleUpdate(request, id)));
+        MagicArticle article = mapper.toArticleUpdate(request, id);
+        if (article.getMagicProvider() == null) {
+            throw new BusinessLogicException("Provider must not be null");
+        }
+        return mapper.toDto(repository.save(article));
     }
 
     @Override
