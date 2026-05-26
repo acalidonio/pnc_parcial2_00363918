@@ -19,7 +19,6 @@ public class ArticleServiceImpl implements ArticleService {
     private final ArticleRepository repository;
     private final ArticleMapper mapper;
 
-
     @Override
     public ArticleResponse getArticleById(UUID id) {
         return mapper.toDto(

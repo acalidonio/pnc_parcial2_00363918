@@ -20,7 +20,6 @@ public class ProviderServiceImpl implements ProviderService {
     private final ProviderRepository repository;
     private final ProviderMapper mapper;
 
-
     @Override
     public ProviderResponse getProviderById(UUID id) {
         return mapper.toDto(

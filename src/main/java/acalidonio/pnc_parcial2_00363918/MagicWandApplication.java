@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootJpaTemplateApplication {
+public class MagicWandApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootJpaTemplateApplication.class, args);
+        SpringApplication.run(MagicWandApplication.class, args);
     }
 
 }

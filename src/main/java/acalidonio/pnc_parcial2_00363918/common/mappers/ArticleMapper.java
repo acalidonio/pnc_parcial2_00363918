@@ -4,9 +4,11 @@ import acalidonio.pnc_parcial2_00363918.domain.dto.request.CreateArticleRequest;
 import acalidonio.pnc_parcial2_00363918.domain.dto.request.UpdateArticleRequest;
 import acalidonio.pnc_parcial2_00363918.domain.dto.response.ArticleResponse;
 import acalidonio.pnc_parcial2_00363918.domain.entities.MagicArticle;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
+@Component
 public class ArticleMapper {
     public MagicArticle toArticleCreate(CreateArticleRequest request) {
         return MagicArticle.builder()
